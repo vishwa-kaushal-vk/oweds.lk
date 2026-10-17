@@ -2311,8 +2311,8 @@ body > header { flex: 0 0 auto; width: 100%; }
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: clamp(40px, 8.25vw, 66px);
-  min-height: 40px;
+  height: clamp(100px, 9.25vw, 100px);
+  min-height: 100px;
   overflow: hidden;
   background-color: #071d34;
   background-image:
