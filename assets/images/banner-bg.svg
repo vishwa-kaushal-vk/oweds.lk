@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="360" viewBox="0 0 1600 360">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#041321"/><stop offset=".55" stop-color="#12395f"/><stop offset="1" stop-color="#071d34"/></linearGradient>
+  <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b4661"/><stop offset="1" stop-color="#041321"/></linearGradient>
+</defs>
+<rect width="1600" height="360" fill="url(#sky)"/>
+<circle cx="1190" cy="82" r="48" fill="#7fe2d3" opacity=".16"/>
+<path d="M0 250 C260 222 420 276 650 248 S1080 215 1290 255 S1480 264 1600 235 V360 H0Z" fill="url(#sea)" opacity=".92"/>
+<g stroke="#8eeadd" stroke-width="4" stroke-linecap="round" opacity=".52" fill="none">
+  <g transform="translate(1035 160)"><path d="M0 0 L-1 151"/><path d="M0 0 L-48 -42 M0 0 L56 -8 M0 0 L1 59"/></g>
+  <g transform="translate(1190 112) scale(.78)"><path d="M0 0 L-1 193"/><path d="M0 0 L-50 -42 M0 0 L60 -10 M0 0 L1 58"/></g>
+  <g transform="translate(1360 174) scale(.88)"><path d="M0 0 L-1 167"/><path d="M0 0 L-48 -42 M0 0 L56 -8 M0 0 L1 59"/></g>
+  <g transform="translate(1510 130) scale(.65)"><path d="M0 0 L-1 210"/><path d="M0 0 L-48 -42 M0 0 L56 -8 M0 0 L1 59"/></g>
+</g>
+<path d="M0 300 C210 286 380 322 600 298 S960 284 1120 310 S1410 320 1600 292" stroke="#75d9ce" stroke-width="2" opacity=".18" fill="none"/>
+</svg>

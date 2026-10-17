@@ -1,12 +1,17 @@
-function reveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top;
-        if (elementTop < window.innerHeight - 100) {
-            element.classList.add('active');
-        }
+/* OWEDS layout script: reveal content as it enters the viewport. */
+(() => {
+  const revealItems = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealItems.forEach((item) => item.classList.add('active'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        obs.unobserve(entry.target);
+      }
     });
-}
-
-window.addEventListener('scroll', reveal, { passive: true });
-window.addEventListener('load', reveal);
+  }, { threshold: 0.08 });
+  revealItems.forEach((item) => observer.observe(item));
+})();

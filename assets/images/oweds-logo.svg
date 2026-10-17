@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="64" viewBox="0 0 220 64">
+<rect width="220" height="64" rx="7" fill="#ffffff"/>
+<g transform="translate(10 8)">
+  <circle cx="24" cy="24" r="22" fill="#071d34"/>
+  <path d="M24 24 L12 11 M24 24 L40 19 M24 24 L24 42" fill="none" stroke="#72e4d3" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="3" fill="#ffffff"/>
+</g>
+<text x="66" y="37" font-family="Arial, sans-serif" font-weight="800" font-size="26" letter-spacing="1" fill="#071d34">OWEDS</text>
+<rect x="66" y="44" width="99" height="3" rx="1.5" fill="#00a88f"/>
+</svg>
