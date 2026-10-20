@@ -225,7 +225,7 @@ a { color: inherit; }
 .home-hero__scroll i { color: var(--teal-bright); }
 
 /* Common content styles */
-.section { padding: clamp(56px, 7vw, 96px) 0; }
+.section { padding: clamp(12px, 4vw, 28px) 0; }
 .section--soft { background: var(--pale); }
 .section--navy { color: #fff; background: linear-gradient(135deg, var(--navy-dark), var(--navy)); }
 .section-heading { max-width: 830px; margin-bottom: 38px; }
