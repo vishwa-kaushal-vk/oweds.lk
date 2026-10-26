@@ -531,7 +531,7 @@ textarea.form-control { min-height: 155px; resize: vertical; }
 #consultants .consultant-header h2 {
   margin: 0 0 12px;
   color: #071d34;
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-size: clamp(1.6rem, 3vw, 1.8rem);
   font-weight: 700;
   line-height: 1.35;
 }
