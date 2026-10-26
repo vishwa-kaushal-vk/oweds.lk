@@ -511,3 +511,127 @@ textarea.form-control { min-height: 155px; resize: vertical; }
     height: 80px;
   }
 }
+
+/* Consultant Associates — clean layout */
+
+#consultants .consultant-content {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  color: #26394a;
+  line-height: 1.8;
+}
+
+#consultants .consultant-header {
+  margin-bottom: 28px;
+  padding: 0px;
+  background: #f2f6f8;
+
+}
+
+#consultants .consultant-header h2 {
+  margin: 0 0 12px;
+  color: #071d34;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#consultants .consultant-header p {
+  margin: 0;
+  color: #526779;
+  font-size: 1.05rem;
+}
+
+#consultants .consultant-intro {
+  margin-bottom: 32px;
+}
+
+#consultants .consultant-intro p,
+#consultants .consultant-section > p,
+#consultants .consultant-closing p {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+#consultants .consultant-section {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid #dce4e9;
+}
+
+#consultants .consultant-section h3,
+#consultants .consultant-closing h3 {
+  margin: 0 0 14px;
+  color: #071d34;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#consultants .consultant-list {
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+#consultants .consultant-list li {
+  margin-bottom: 9px;
+  padding-left: 4px;
+  line-height: 1.7;
+}
+
+#consultants .consultant-expertise {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  row-gap: 2px;
+}
+
+#consultants .consultant-application-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+}
+
+#consultants .consultant-section a {
+  color: #123b5a;
+  font-weight: 600;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+#consultants .consultant-closing {
+  margin-top: 34px;
+  padding: 10px 0px;
+  background: #f2f6f8;
+}
+
+#consultants .consultant-closing p:last-child {
+  margin-bottom: 0;
+}
+
+#consultants .consultant-closing strong {
+  color: #071d34;
+}
+
+@media (max-width: 650px) {
+  #consultants .consultant-content {
+    margin-top: 22px;
+  }
+
+  #consultants .consultant-header,
+  #consultants .consultant-closing {
+    padding: 22px 18px;
+  }
+
+  #consultants .consultant-expertise,
+  #consultants .consultant-application-list {
+    grid-template-columns: 1fr;
+  }
+
+  #consultants .consultant-section {
+    margin-top: 24px;
+    padding-top: 22px;
+  }
+}
+
