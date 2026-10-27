@@ -800,7 +800,7 @@ textarea.form-control { min-height: 155px; resize: vertical; }
 
 #consultants .consultant-intro p {
   margin: 0 0 14px;
-  line-height: 1.85;
+  line-height: 1.5;
 }
 
 /* Expertise */
@@ -1334,4 +1334,73 @@ textarea.form-control { min-height: 155px; resize: vertical; }
   #consultants .consultant-expertise-grid > div {
     transition: none;
   }
+}
+
+
+/* About Us tab visibility */
+.tab-panel[hidden] {
+  display: none !important;
+}
+
+.tab-panel:not([hidden]) {
+  display: block;
+}
+
+
+#consultants .consultant-database-header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dce5eb;
+}
+
+#consultants .consultant-database-header h2 {
+  margin: 0;
+  color: #071d34;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#consultants .consultant-intro p {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+#consultants .consultant-content-section {
+  margin-top: 22px;
+  padding-top: 20px;
+}
+
+#consultants .consultant-content-section > p {
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+#consultants .consultant-header {
+  margin-bottom: 20px;
+  padding: 24px 28px;
+}
+
+#consultants .consultant-benefits-grid {
+  gap: 10px;
+  margin-top: 16px;
+}
+
+#consultants .consultant-benefit-card {
+  padding: 15px;
+}
+
+#consultants .consultant-application-grid li {
+  padding: 8px 4px;
+}
+
+#consultants .consultant-closing {
+  margin-top: 22px;
+  padding: 22px 26px;
+}
+
+#consultants .consultant-profiles {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid #dce5eb;
 }
