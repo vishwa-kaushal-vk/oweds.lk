@@ -1,43 +1,45 @@
 (function () {
   "use strict";
 
-  // Make the current primary navigation item clear for assistive technology.
+  // Mark the current navigation link for screen readers and visual styling.
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".primary-navigation a[href]").forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href && href === currentPath) link.setAttribute("aria-current", "page");
+    if (link.getAttribute("href") === currentPath) {
+      link.setAttribute("aria-current", "page");
+    }
   });
 
-
-  // Accessible in-page tabs. Hashes allow direct links to a specific section.
-  const tabGroups = document.querySelectorAll('[role="tablist"]');
-  tabGroups.forEach((tabList) => {
+  // Accessible tabs: mouse, keyboard arrows and direct links via URL hashes.
+  document.querySelectorAll('[role="tablist"]').forEach((tabList) => {
     const tabs = Array.from(tabList.querySelectorAll('[role="tab"][data-tab-target]'));
     if (!tabs.length) return;
 
-    const activateTab = (tab, updateHash) => {
-      tabs.forEach((item) => {
-        const selected = item === tab;
-        item.classList.toggle('active', selected);
-        item.setAttribute('aria-selected', String(selected));
-        item.tabIndex = selected ? 0 : -1;
-        const panel = document.getElementById(item.dataset.tabTarget);
+    const activateTab = (selectedTab, updateHash) => {
+      tabs.forEach((tab) => {
+        const selected = tab === selectedTab;
+        tab.classList.toggle("active", selected);
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+
+        const panel = document.getElementById(tab.dataset.tabTarget);
         if (panel) panel.hidden = !selected;
       });
-      if (updateHash && tab.dataset.tabTarget && window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#' + encodeURIComponent(tab.dataset.tabTarget));
+
+      if (updateHash && selectedTab.dataset.tabTarget) {
+        window.history.replaceState(null, "", `#${encodeURIComponent(selectedTab.dataset.tabTarget)}`);
       }
     };
 
     tabs.forEach((tab, index) => {
-      tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
-      tab.addEventListener('click', () => activateTab(tab, true));
-      tab.addEventListener('keydown', (event) => {
+      tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
+      tab.addEventListener("click", () => activateTab(tab, true));
+      tab.addEventListener("keydown", (event) => {
         let nextIndex = null;
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
-        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
-        if (event.key === 'Home') nextIndex = 0;
-        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % tabs.length;
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = tabs.length - 1;
+
         if (nextIndex !== null) {
           event.preventDefault();
           tabs[nextIndex].focus();
@@ -46,19 +48,41 @@
       });
     });
 
-    const hashTarget = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+    const hashTarget = decodeURIComponent(window.location.hash.replace(/^#/, ""));
     const linkedTab = tabs.find((tab) => tab.dataset.tabTarget === hashTarget);
     if (linkedTab) {
       activateTab(linkedTab, false);
-      // When arriving from an old child-page URL, bring the tabs into view.
-      window.requestAnimationFrame(() => tabList.scrollIntoView({ block: 'start', behavior: 'auto' }));
+      window.requestAnimationFrame(() => tabList.scrollIntoView({ block: "start", behavior: "auto" }));
     }
   });
 
-  // Client-side required-field check for a clearer message before form submission.
+  // Shared Read more / Read less control for About, Solutions and News sections.
+  document.querySelectorAll("[data-read-more]").forEach((button) => {
+    const panelId = button.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    const label = button.childNodes[0];
+    const icon = button.querySelector(".read-more-toggle__icon");
+
+    button.addEventListener("click", () => {
+      const willExpand = panel.hidden;
+      panel.hidden = !willExpand;
+      button.setAttribute("aria-expanded", String(willExpand));
+
+      if (label && label.nodeType === Node.TEXT_NODE) {
+        label.textContent = willExpand ? "Read less " : "Read more ";
+      } else {
+        button.textContent = willExpand ? "Read less" : "Read more";
+      }
+      if (icon) icon.textContent = willExpand ? "−" : "+";
+    });
+  });
+
+  // Client-side required-field validation for the contact form.
   const form = document.querySelector("[data-contact-form]");
   if (form) {
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", (event) => {
       if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();

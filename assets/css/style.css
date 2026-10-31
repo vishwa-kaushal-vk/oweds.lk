@@ -13,6 +13,12 @@
   --shadow: 0 18px 48px rgba(7, 29, 52, .10);
   --radius: 16px;
   --container: 1200px;
+
+  /* QUICK EDIT SETTINGS — adjust these values to tune all requested pages. */
+  --page-title-size: clamp(1.55rem, 2.6vw, 2.05rem); /* Main page heading size */
+  --section-space-y: clamp(6px, 1.15vw, 12px); /* Vertical space above/below sections */
+  --education-ad-height: 90px; /* Reserved height for a standard banner advert */
+  --education-ad-gap: 14px; /* Space around an education advert */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -296,15 +302,152 @@ a { color: inherit; }
 .callout p { margin: 0; }
 
 /* News */
-.news-layout { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 30px; align-items: start; }
-.news-article { padding: clamp(25px, 4vw, 46px); background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 12px 35px rgba(7,29,52,.04); }
-.news-article h2 { margin: 0 0 13px; font-size: clamp(1.7rem, 2.7vw, 2rem); line-height: 1.2; color: var(--navy); letter-spacing: -.035em; }
-.news-date { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 28px; color: #071d34; font-size: .86rem; font-weight: 750; }
-.news-article p { color: #526276; margin: 0 0 20px; }
-.news-article p:last-child { margin-bottom: 0; }
-.news-sidebar { padding: 28px; color: #fff; background: var(--navy); border-radius: 17px; }
-.news-sidebar h3 { color: #fff; margin: 0 0 12px; font-size: 1.15rem; }
-.news-sidebar p { margin: 0; color: #c6d5e0; font-size: .93rem; }
+/* =========================================
+   NEWS PAGE
+========================================= */
+
+.news-single {
+  max-width: 1100px;
+  margin: 35px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Article */
+
+.news-article {
+  width: 100%;
+  padding: clamp(22px, 4vw, 42px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(7, 29, 52, 0.04);
+}
+
+/* Article heading */
+
+.news-article-header {
+  margin-bottom: 22px;
+}
+
+.news-article-header h2 {
+  margin: 0 0 13px;
+  color: var(--navy);
+  font-size: clamp(1.5rem, 2.7vw, 2rem);
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+/* Publication date */
+
+.news-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #607284;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.news-date i {
+  color: #258c91;
+}
+
+/* Article introduction and paragraphs */
+
+.news-article > p,
+.news-article-content p {
+  margin: 0 0 17px;
+  color: #526276;
+  font-size: 1rem;
+  line-height: 1.85;
+  text-align: justify;
+}
+
+.news-article-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Featured image */
+
+.news-featured-image {
+  width: 100%;
+  margin: 24px 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #edf2f5;
+}
+
+.news-featured-image img {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Article footer */
+
+.news-article-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: #607284;
+  font-size: 0.9rem;
+}
+
+.news-article-footer strong {
+  color: var(--navy);
+}
+
+.news-article-footer a {
+  margin-left: auto;
+  color: #176879;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .news-single {
+    margin: 22px auto;
+    gap: 20px;
+  }
+
+  .news-article {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .news-article > p,
+  .news-article-content p {
+    text-align: left;
+    font-size: 0.96rem;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .news-featured-image {
+    margin: 18px 0;
+  }
+
+  .news-featured-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .news-article-footer a {
+    margin-left: 0;
+  }
+}
 
 /* Contact form */
 .contact-layout { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 70px); align-items: start; }
@@ -1179,5 +1322,277 @@ textarea.form-control { min-height: 155px; resize: vertical; }
 
   #our-partners .consultant-intro p {
     margin-bottom: 8px;
+  }
+}
+
+/* Quick stylesheet guide:
+   1. Edit the colour and spacing variables in :root for site-wide adjustments.
+   2. The page-specific styles are grouped below under Home, About, Solutions,
+      News, Education and Contact comments.
+   3. The CLIENT UPDATE block at the bottom controls the newest compact layout
+      and Read more behaviour. Keep it at the end so these rules take priority.
+*/
+
+/* ========================================================================== 
+   CLIENT UPDATE — COMPACT SPACING, SMALLER TITLES & READ MORE PANELS
+   QUICK EDIT: change the four -- variables in :root near the top of this file.
+   ========================================================================== */
+
+/* Compact vertical rhythm across the requested content pages. */
+#main-content > .section {
+  padding-block: var(--section-space-y);
+}
+
+/* Smaller page titles and eyebrow-style headings on requested pages. */
+.eyebrow {
+  margin-bottom: 8px;
+  font-size: clamp(1.05rem, 1.65vw, 1.3rem);
+  letter-spacing: .07em;
+}
+.section-page-title {
+  margin-bottom: 12px;
+  font-size: var(--page-title-size);
+  line-height: 1.2;
+}
+
+/* Reduce extra margins inside content sections without changing the copy. */
+.section-heading {
+  margin-bottom: 14px;
+}
+.section-heading h2,
+.section-heading h3,
+.section-heading h4 {
+  margin-bottom: 8px;
+}
+.section-heading h3 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.3;
+}
+.section-heading h4 {
+  font-size: clamp(1rem, 1.55vw, 1.2rem);
+  line-height: 1.35;
+}
+.prose p,
+.home-copy p {
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+.surface-card {
+  padding: clamp(18px, 2vw, 26px);
+}
+
+/* A slightly shorter brand banner creates less dead space above page content. */
+.site-banner {
+  min-height: 92px;
+}
+.site-banner__title {
+  font-size: clamp(22px, 2.35vw, 29px);
+}
+
+/* Home: center the last benefit card on its own row at every screen size. */
+.benefit-card--last {
+  grid-column: 2;
+}
+@media (max-width: 767.98px) {
+  .benefit-card--last {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, calc((100% - 17px) / 2));
+  }
+}
+@media (max-width: 425px) {
+  .benefit-card--last {
+    grid-column: 1;
+    width: 100%;
+  }
+}
+
+/* Read more / Read less controls shared by About, Solutions and News. */
+.read-more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--teal-hover);
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 750;
+  line-height: 1.4;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.read-more-toggle:hover {
+  color: var(--navy);
+}
+.read-more-toggle:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+.read-more-toggle__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e8f7f3;
+  color: var(--teal-hover);
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+}
+.read-more-content[hidden] {
+  display: none !important;
+}
+.read-more-content:not([hidden]) {
+  display: block;
+  animation: read-more-reveal .22s ease-out;
+}
+@keyframes read-more-reveal {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* About: compact the tab and database spacing around the new collapse panels. */
+.page-tabs {
+  gap: 8px;
+  margin-bottom: 14px;
+}
+#consultants .consultant-content,
+#our-partners .consultant-content {
+  margin-top: 14px;
+}
+#consultants .consultant-database-header,
+#our-partners .consultant-database-header {
+  margin-bottom: 12px;
+  padding-bottom: 9px;
+}
+#consultants .consultant-intro,
+#our-partners .consultant-intro {
+  margin-bottom: 10px;
+}
+#consultants .consultant-content-section,
+#our-partners .consultant-content-section {
+  margin-block: 10px;
+  padding-block: 8px;
+}
+#consultants .consultant-application,
+#our-partners .consultant-application {
+  margin-top: 12px;
+  padding: 18px;
+}
+#consultants .consultant-profiles {
+  margin-top: 16px;
+  padding-top: 14px;
+}
+
+/* Solutions: the first paragraph stays visible; later paragraphs open on demand. */
+.solutions-intro > p:first-child {
+  margin-bottom: 8px;
+}
+.solutions-intro .read-more-content p {
+  margin-bottom: 8px;
+}
+
+/* News: compact list/cards and show the lead paragraph as a three-line preview. */
+.news-section {
+  padding-block: var(--section-space-y);
+}
+.news-single {
+  margin-block: 12px;
+  gap: 12px;
+}
+.news-article {
+  padding: clamp(16px, 2.2vw, 24px);
+  border-radius: 12px;
+}
+.news-article-header {
+  margin-bottom: 10px;
+}
+.news-article-header h2 {
+  margin-bottom: 7px;
+  font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+  line-height: 1.25;
+}
+.news-article > p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  margin-bottom: 7px;
+  font-size: .96rem;
+  line-height: 1.55;
+  text-align: left;
+}
+.news-article .read-more-toggle {
+  margin-top: 2px;
+}
+.news-article .read-more-content {
+  margin-top: 8px;
+}
+.news-featured-image {
+  margin: 12px 0;
+}
+.news-article > p,
+.news-article-content p {
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+.news-article-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+}
+
+/* Education: optional ad slots are hidden when empty and reserve banner height
+   automatically when an image, iframe or ad-code element is inserted. */
+.education-page-section {
+  padding-block: clamp(10px, 2vw, 18px) !important;
+}
+.education-page-section .section-page-title {
+  margin-bottom: 10px;
+}
+.education-page-section .placeholder-panel {
+  padding: clamp(20px, 3vw, 32px);
+}
+.ad-banner-slot:empty {
+  display: none;
+}
+.ad-banner-slot:not(:empty) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 970px);
+  min-height: var(--education-ad-height);
+  margin: var(--education-ad-gap) auto;
+  text-align: center;
+}
+.ad-banner-slot img,
+.ad-banner-slot iframe {
+  display: block;
+  max-width: 100%;
+  border: 0;
+}
+
+/* Mobile refinements: keep buttons and cards compact without narrowing text. */
+@media (max-width: 767.98px) {
+  .site-banner {
+    min-height: 48px;
+  }
+  .site-banner__title {
+    font-size: clamp(11px, 3.1vw, 15px);
+  }
+  .page-tabs {
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  #consultants .consultant-content,
+  #our-partners .consultant-content {
+    margin-top: 8px;
   }
 }
