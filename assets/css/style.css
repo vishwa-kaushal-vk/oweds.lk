@@ -1,4 +1,28 @@
 :root {
+  /* ================================================================
+     OWEDS — QUICK EDIT PANEL
+
+     This is the main place to customise the website.
+
+     FONT SIZE GUIDE:
+     - 1rem is normally 16px.  0.95rem is about 15px.
+     - Increase a font-size value to make text larger.
+     - Decrease a font-size value to make text smaller.
+     - clamp(MIN, FLUID, MAX) lets headings resize between devices.
+
+     SPACING GUIDE:
+     - Increase a gap / padding value to add more space.
+     - Decrease it to make the page more compact.
+     - The section spacing setting affects the vertical padding
+       above and below the main content sections.
+
+     ADVERTISEMENT GUIDE:
+     - 144px is approximately 1.5 inches in CSS pixels.
+     - The banner width is 100% of its parent child-section,
+       NOT 100vw and NOT the full browser width.
+     ================================================================ */
+
+  /* Brand colours — edit these to change the site's colour theme. */
   --navy: #071d34;
   --navy-dark: #041321;
   --navy-mid: #12395f;
@@ -14,11 +38,36 @@
   --radius: 16px;
   --container: 1200px;
 
-  /* QUICK EDIT SETTINGS — adjust these values to tune all requested pages. */
-  --page-title-size: clamp(1.55rem, 2.6vw, 2.05rem); /* Main page heading size */
-  --section-space-y: clamp(6px, 1.15vw, 12px); /* Vertical space above/below sections */
-  --education-ad-height: 90px; /* Reserved height for a standard banner advert */
-  --education-ad-gap: 14px; /* Space around an education advert */
+  /* Main page title: Home, About Us, Solutions, News, Education, Contact. */
+  --page-title-size: clamp(1.55rem, 2.35vw, 2rem);
+
+  /* Headings inside each page and smaller sub-headings. */
+  --oweds-font-section-heading: clamp(1.22rem, 1.8vw, 1.55rem);
+  --oweds-font-subheading: 1.08rem;
+
+  /* Main text sizes. Change these to adjust paragraph and card text. */
+  --oweds-font-body: 1rem;             /* Main paragraphs: about 16px */
+  --oweds-font-small: .91rem;          /* Supporting text: about 14.5px */
+  --oweds-font-card: .95rem;           /* Benefit cards and information boxes */
+  --oweds-font-meta: .84rem;           /* Dates, captions and small labels */
+  --oweds-font-control: .92rem;        /* Tabs, buttons and Read more links */
+
+  /* Line spacing and gaps between text elements. */
+  --oweds-body-line-height: 1.5;
+  --oweds-small-line-height: 1.45;
+  --oweds-paragraph-gap: 7px;
+  --oweds-heading-gap: 7px;
+
+  /* Main layout spacing and card sizing. */
+  --section-space-y: clamp(5px, .85vw, 10px);
+  --oweds-card-padding: 14px;
+  --oweds-grid-gap: 9px;
+
+  /* Reusable animated advertisement banner settings. */
+  --oweds-ad-height: 144px;             /* 1.5 inches at 96 CSS px per inch */
+  --oweds-ad-width: 100%;               /* 100% of the containing child-section */
+  --education-ad-height: 90px;           /* Existing Education ad-slot height */
+  --education-ad-gap: 14px;              /* Space around Education ad slots */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -1596,3 +1645,555 @@ textarea.form-control { min-height: 155px; resize: vertical; }
     margin-top: 8px;
   }
 }
+
+/* ========================================================================
+   FINAL SITE-WIDE READABILITY + SPACING SETTINGS
+
+   This block is intentionally placed at the END of the file so it takes
+   priority over earlier page rules. To make a global adjustment, edit the
+   variables in the QUICK EDIT PANEL at the top instead of hunting through
+   individual page selectors.
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   A. MAIN SECTIONS AND PAGE TITLES
+   ------------------------------------------------------------------------ */
+
+/* Reduce empty vertical space before and after each main content section. */
+#main-content > .section,
+#main-content .section {
+  padding-top: var(--section-space-y) !important;
+  padding-bottom: var(--section-space-y) !important;
+}
+
+/* Main page title size and spacing. */
+#main-content .section-page-title,
+#main-content .contact-page-title {
+  font-size: var(--page-title-size) !important;
+  line-height: 1.22 !important;
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Section headings and smaller headings. */
+#main-content .section-heading {
+  margin-top: 0 !important;
+  margin-bottom: var(--oweds-heading-gap) !important;
+}
+
+#main-content .section-heading h2,
+#main-content .section-heading h3 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.32 !important;
+  margin-top: 0 !important;
+  margin-bottom: var(--oweds-heading-gap) !important;
+}
+
+#main-content .section-heading h4,
+#main-content .section-heading h5 {
+  font-size: var(--oweds-font-subheading) !important;
+  line-height: 1.35 !important;
+  margin-top: 0 !important;
+  margin-bottom: 5px !important;
+}
+
+/* ------------------------------------------------------------------------
+   B. PARAGRAPHS AND TEXT INSIDE ALL MAIN CONTENT SECTIONS
+   ------------------------------------------------------------------------ */
+
+/* Standard paragraph font size, line height and paragraph-to-paragraph gap. */
+#main-content p {
+  font-size: var(--oweds-font-body) !important;
+  line-height: var(--oweds-body-line-height) !important;
+  margin-top: 0 !important;
+  margin-bottom: var(--oweds-paragraph-gap) !important;
+}
+
+#main-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Supporting text and captions. */
+#main-content .news-date,
+#main-content .footer-note,
+#main-content .form-note {
+  font-size: var(--oweds-font-meta) !important;
+}
+
+/* Keep text blocks close to their headings. */
+#main-content .prose,
+#main-content .home-copy,
+#main-content .placeholder-panel,
+#main-content .surface-card {
+  line-height: var(--oweds-body-line-height) !important;
+}
+
+#main-content .prose p,
+#main-content .home-copy p {
+  margin-bottom: var(--oweds-paragraph-gap) !important;
+}
+
+/* ------------------------------------------------------------------------
+   C. CARDS, BENEFIT BOXES AND HOME PAGE BULLETS
+   ------------------------------------------------------------------------ */
+
+/* Cards use compact padding while preserving readable internal text. */
+#main-content .surface-card,
+#main-content .placeholder-panel {
+  padding: var(--oweds-card-padding) !important;
+  border-radius: 12px;
+}
+
+#main-content .surface-card h2,
+#main-content .surface-card h3,
+#main-content .surface-card h4,
+#main-content .placeholder-panel h2,
+#main-content .placeholder-panel h3 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.32 !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+#main-content .benefits-grid {
+  gap: var(--oweds-grid-gap) !important;
+  row-gap: var(--oweds-grid-gap) !important;
+  margin-top: 10px !important;
+}
+
+#main-content .benefit-card {
+  min-height: 0 !important;
+  padding: 12px !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+#main-content .benefit-card p {
+  font-size: var(--oweds-font-card) !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  overflow-wrap: break-word;
+}
+
+/* Keep the final benefit card centred in the last grid row. */
+#main-content .benefit-card--last {
+  grid-column: 2 !important;
+}
+
+/* ------------------------------------------------------------------------
+   D. ABOUT US PAGE — TABS, CONSULTANTS AND PARTNERS
+   ------------------------------------------------------------------------ */
+
+#main-content .page-tabs {
+  gap: 6px !important;
+  margin-top: 5px !important;
+  margin-bottom: 8px !important;
+}
+
+#main-content .page-tabs button,
+#main-content .page-tabs a {
+  padding: 8px 12px !important;
+  font-size: var(--oweds-font-control) !important;
+  line-height: 1.35 !important;
+}
+
+#consultants .consultant-content,
+#our-partners .consultant-content {
+  width: min(100%, 1100px) !important;
+  max-width: 1100px !important;
+  margin: 8px auto 0 !important;
+  line-height: var(--oweds-body-line-height) !important;
+}
+
+#consultants .consultant-database-header,
+#our-partners .consultant-database-header {
+  margin-bottom: 8px !important;
+  padding-bottom: 7px !important;
+}
+
+#consultants .consultant-database-header h2,
+#our-partners .consultant-database-header h2 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.3 !important;
+}
+
+#consultants .consultant-header,
+#our-partners .consultant-header {
+  margin-bottom: 6px !important;
+  padding: 8px 12px !important;
+}
+
+#consultants .consultant-header h2,
+#consultants .consultant-header h3,
+#our-partners .consultant-header h2,
+#our-partners .consultant-header h3 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 4px !important;
+}
+
+#consultants .consultant-intro,
+#our-partners .consultant-intro {
+  margin: 0 0 7px !important;
+  padding: 3px 6px !important;
+}
+
+#consultants .consultant-intro p,
+#our-partners .consultant-intro p {
+  font-size: var(--oweds-font-body) !important;
+  line-height: var(--oweds-body-line-height) !important;
+  margin-bottom: 5px !important;
+}
+
+#consultants .consultant-content-section,
+#our-partners .consultant-content-section {
+  margin: 7px 0 !important;
+  padding: 6px 0 !important;
+}
+
+#consultants .consultant-expertise-grid,
+#our-partners .consultant-expertise-grid {
+  gap: 7px !important;
+  margin-top: 5px !important;
+}
+
+#consultants .consultant-expertise-grid > div,
+#our-partners .consultant-expertise-grid > div {
+  min-height: 0 !important;
+  padding: 10px 12px 10px 27px !important;
+  font-size: var(--oweds-font-card) !important;
+  line-height: 1.4 !important;
+}
+
+#consultants .consultant-application,
+#our-partners .consultant-application {
+  margin-top: 8px !important;
+  padding: 13px !important;
+}
+
+#consultants .consultant-application-intro h3,
+#our-partners .consultant-application-intro h3 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 5px !important;
+}
+
+/* ------------------------------------------------------------------------
+   E. SOLUTIONS PAGE — CHILD TABS AND INFORMATION PANELS
+   ------------------------------------------------------------------------ */
+
+#main-content .section--soft .section-heading {
+  margin-bottom: 7px !important;
+}
+
+#main-content .section--soft .page-tabs {
+  margin-top: 4px !important;
+  margin-bottom: 7px !important;
+  gap: 5px !important;
+}
+
+#main-content .section--soft .tab-panel {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+#main-content .section--soft .placeholder-panel {
+  padding: 13px !important;
+}
+
+#main-content .section--soft .placeholder-panel h3 {
+  font-size: var(--oweds-font-section-heading) !important;
+  margin-bottom: 5px !important;
+}
+
+#main-content .section--soft .placeholder-panel p {
+  font-size: var(--oweds-font-body) !important;
+  line-height: var(--oweds-body-line-height) !important;
+  margin-bottom: 0 !important;
+}
+
+/* ------------------------------------------------------------------------
+   F. NEWS PAGE — ARTICLES, PREVIEWS AND READ MORE CONTROLS
+   ------------------------------------------------------------------------ */
+
+#main-content .news-single {
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
+  gap: 8px !important;
+}
+
+#main-content .news-article {
+  padding: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+#main-content .news-article-header {
+  margin-bottom: 6px !important;
+}
+
+#main-content .news-article-header h2 {
+  font-size: var(--oweds-font-section-heading) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 4px !important;
+}
+
+#main-content .news-article > p,
+#main-content .news-article-content p {
+  font-size: var(--oweds-font-body) !important;
+  line-height: var(--oweds-body-line-height) !important;
+  margin-bottom: 6px !important;
+}
+
+#main-content .news-featured-image {
+  margin: 8px 0 !important;
+}
+
+/* The existing three-line preview and Read more behaviour stay intact. */
+#main-content .read-more-toggle {
+  display: inline-flex;
+  margin: 3px 0 5px !important;
+  font-size: var(--oweds-font-control) !important;
+  line-height: 1.35 !important;
+}
+
+#main-content .read-more-content {
+  margin-top: 4px !important;
+}
+
+/* ------------------------------------------------------------------------
+   G. EDUCATION PAGE AND EXISTING AD PLACEMENT SLOTS
+   ------------------------------------------------------------------------ */
+
+#main-content .education-page-section {
+  padding-top: var(--section-space-y) !important;
+  padding-bottom: var(--section-space-y) !important;
+}
+
+#main-content .education-page-section .placeholder-panel {
+  padding: var(--oweds-card-padding) !important;
+}
+
+/* Empty advertising slots do not reserve blank space. */
+.ad-banner-slot:empty {
+  display: none !important;
+}
+
+.ad-banner-slot:not(:empty) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 970px);
+  max-width: 100%;
+  min-height: var(--education-ad-height);
+  margin: var(--education-ad-gap) auto;
+  text-align: center;
+}
+
+.ad-banner-slot img,
+.ad-banner-slot iframe {
+  display: block;
+  max-width: 100%;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------------
+   H. CONTACT PAGE — FORM TEXT AND INTERNAL SPACING
+   ------------------------------------------------------------------------ */
+
+#main-content .contact-form-card {
+  padding: 16px !important;
+}
+
+#main-content .contact-form-card h2,
+#main-content .contact-form-card h3,
+#main-content .contact-form-card h4 {
+  font-size: var(--oweds-font-section-heading) !important;
+  margin-bottom: 6px !important;
+}
+
+#main-content .form-intro {
+  font-size: var(--oweds-font-small) !important;
+  line-height: var(--oweds-body-line-height) !important;
+  margin-bottom: 11px !important;
+}
+
+#main-content .form-label {
+  font-size: var(--oweds-font-control) !important;
+  margin-bottom: 4px !important;
+}
+
+#main-content .form-control,
+#main-content .form-select {
+  font-size: var(--oweds-font-control) !important;
+}
+
+/* ------------------------------------------------------------------------
+   I. REUSABLE ANIMATED OFFSHORE WIND ADVERTISEMENT BANNER
+
+   IMPORTANT WIDTH RULE:
+   - The banner is width: 100% of its PARENT element.
+   - It does not use 100vw, fixed viewport widths or full-screen sizing.
+   - On the Partners tab, the parent .consultant-content is limited to
+     1100px and centred. The banner therefore fits inside that child area.
+   - For reuse, place the banner HTML inside the section/card whose width
+     you want it to follow.
+
+   HEIGHT:
+   - 144px = approximately 1.5 inches at the CSS standard of 96px/inch.
+   ------------------------------------------------------------------------ */
+
+.oweds-ad-banner {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--oweds-ad-width);
+  max-width: 100%;
+  min-width: 0;
+  height: var(--oweds-ad-height);
+  min-height: var(--oweds-ad-height);
+  max-height: var(--oweds-ad-height);
+  overflow: hidden;
+  margin: 8px 0;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: linear-gradient(
+    110deg,
+    rgba(4, 19, 33, .97),
+    rgba(7, 49, 76, .94),
+    rgba(0, 130, 125, .88)
+  );
+  box-shadow: 0 4px 14px rgba(7, 29, 52, .12);
+}
+
+/* The Partners tab's child content is narrower than the page container. */
+#our-partners .consultant-content {
+  width: min(100%, 1100px) !important;
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* In Partners, the banner follows the width of the child content area. */
+#our-partners .consultant-content .oweds-ad-banner,
+#our-partners .consultant-recruitment .oweds-ad-banner,
+#our-partners .consultant-application .oweds-ad-banner {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.oweds-ad-banner__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Each message takes the same banner space and fades/slides into view. */
+.oweds-ad-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: .015em;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: oweds-banner-animation 15s infinite;
+}
+
+/* Five slides: one message appears every three seconds. */
+.oweds-ad-banner .slide-1 { animation-delay: 0s; }
+.oweds-ad-banner .slide-2 { animation-delay: 3s; }
+.oweds-ad-banner .slide-3 { animation-delay: 6s; }
+.oweds-ad-banner .slide-4 { animation-delay: 9s; }
+.oweds-ad-banner .slide-5 { animation-delay: 12s; }
+
+@keyframes oweds-banner-animation {
+  0% { opacity: 0; transform: translateY(8px); }
+  3% { opacity: 1; transform: translateY(0); }
+  17% { opacity: 1; transform: translateY(0); }
+  20% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ------------------------------------------------------------------------
+   J. MOBILE ADJUSTMENTS — KEEP TYPE READABLE AND PREVENT OVERFLOW
+   ------------------------------------------------------------------------ */
+
+@media (max-width: 767.98px) {
+  #main-content > .section,
+  #main-content .section {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  #main-content .section-page-title,
+  #main-content .contact-page-title {
+    font-size: clamp(1.4rem, 5vw, 1.6rem) !important;
+  }
+
+  #main-content .benefits-grid {
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+
+  #main-content .benefit-card,
+  #main-content .benefit-card--last {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+
+  #main-content .news-article {
+    padding: 12px !important;
+  }
+
+  #consultants .consultant-application,
+  #our-partners .consultant-application {
+    padding: 11px !important;
+  }
+
+  /* Keep the banner at 1.5 inches and within the mobile child section. */
+  .oweds-ad-banner {
+    width: 100%;
+    max-width: 100%;
+    height: var(--oweds-ad-height);
+    min-height: var(--oweds-ad-height);
+    max-height: var(--oweds-ad-height);
+    margin: 7px 0;
+    padding: 8px 10px;
+  }
+
+  .oweds-ad-slide {
+    font-size: clamp(1.05rem, 4.4vw, 1.3rem);
+  }
+}
+
+/* If a visitor prefers reduced motion, show a static first banner message. */
+@media (prefers-reduced-motion: reduce) {
+  .oweds-ad-slide {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+  }
+
+  .oweds-ad-banner .slide-1 {
+    opacity: 1 !important;
+  }
+}
+
